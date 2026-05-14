@@ -5,3 +5,9 @@ data/
 node_modules/
 __pycache__/
 *.pyc
+# Environment files (security)
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
