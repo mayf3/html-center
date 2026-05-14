@@ -1,0 +1,4 @@
+interface:
+  display_name: "网页设计评审"
+  short_description: "严格评审 Web UI，生成并发布中文 HTML 报告"
+  default_prompt: "使用 $web-design-review 用中文评审这个浏览器界面；适合时生成左侧导航 HTML 评审报告，并在 HTML Center 可用时发布。"

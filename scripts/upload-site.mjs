@@ -3,7 +3,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 const DEFAULT_URL = process.env.HTML_CENTER_URL || "http://127.0.0.1:4177";
-const IGNORED_DIRS = new Set([".git", "node_modules", ".next", "dist", "build"]);
+const IGNORED_DIRS = new Set([".git", "node_modules", "__pycache__"]);
 const IGNORED_FILES = new Set([".DS_Store"]);
 
 main().catch((error) => {

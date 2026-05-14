@@ -95,7 +95,13 @@ npm run upload -- ./docs --title "Gateway review" --category design-review --ent
 
 ## 和 skill 集成
 
-`web-design-review` skill 已经带了发布脚本：
+仓库里带了一份 `web-design-review` skill：
+
+```text
+skills/web-design-review
+```
+
+你可以在仓库里继续改这份 skill，再同步到自己的 Codex skills 目录。当前本机 `~/.codex/skills/web-design-review` 也已经带了同样的发布脚本。
 
 ```bash
 python ~/.codex/skills/web-design-review/scripts/publish_html_report.py ./design-review.html \
