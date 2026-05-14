@@ -1,0 +1,5 @@
+data/
+.html-center.log
+.html-center.pid
+.DS_Store
+node_modules/

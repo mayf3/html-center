@@ -1,0 +1,14 @@
+{
+  "name": "html-center",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/server.mjs && node --check scripts/upload-site.mjs",
+    "start": "node src/server.mjs",
+    "upload": "node scripts/upload-site.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
