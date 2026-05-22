@@ -1,5 +1,8 @@
 # HTML Center
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 HTML Center 是一个本机常驻的小服务，用来集中收纳自己或 agent 生成的 HTML 内容。
 
 典型用途：
@@ -101,10 +104,18 @@ npm run upload -- ./docs --title "Gateway review" --category design-review --ent
 skills/web-design-review
 ```
 
-你可以在仓库里继续改这份 skill，再同步到自己的 Codex skills 目录。当前本机 `~/.codex/skills/web-design-review` 也已经带了同样的发布脚本。
+你可以在仓库里继续改这份 skill，再同步到自己的 Codex skills 目录。当前本机 `~/.codex/skills/web-design-review` 也已经带了同样的自检启动脚本和发布脚本；发布脚本默认会先确保本机 HTML Center 在线。
+
+也可以单独确保本机 HTML Center 在线：
 
 ```bash
-python ~/.codex/skills/web-design-review/scripts/publish_html_report.py ./design-review.html \
+python3 ~/.codex/skills/web-design-review/scripts/ensure_html_center.py
+```
+
+上传单文件报告：
+
+```bash
+python3 ~/.codex/skills/web-design-review/scripts/publish_html_report.py ./design-review.html \
   --title "Design review" \
   --category design-review
 ```
@@ -112,7 +123,7 @@ python ~/.codex/skills/web-design-review/scripts/publish_html_report.py ./design
 上传目录包：
 
 ```bash
-python ~/.codex/skills/web-design-review/scripts/publish_html_report.py ./docs \
+python3 ~/.codex/skills/web-design-review/scripts/publish_html_report.py ./docs \
   --title "System design review" \
   --category architecture-review \
   --entry index.html

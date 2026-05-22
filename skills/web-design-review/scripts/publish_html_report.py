@@ -9,6 +9,7 @@ import html
 import json
 import os
 import re
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -30,6 +31,8 @@ def main() -> int:
     parser.add_argument("--entry", default="", help="Entry path inside the uploaded bundle")
     parser.add_argument("--tags", default="", help="Comma-separated tags")
     parser.add_argument("--url", default=DEFAULT_URL, help="HTML Center base URL")
+    parser.add_argument("--no-ensure", action="store_true", help="Do not auto-start HTML Center")
+    parser.add_argument("--ensure-timeout", default="10", help="Seconds to wait for HTML Center")
     args = parser.parse_args()
 
     input_path = Path(args.path).expanduser().resolve()
@@ -59,6 +62,9 @@ def main() -> int:
         ],
     }
 
+    if not args.no_ensure:
+        ensure_html_center(args.url, args.ensure_timeout)
+
     endpoint = args.url.rstrip("/") + "/api/sites"
     request = urllib.request.Request(
         endpoint,
@@ -80,6 +86,25 @@ def main() -> int:
     print(f"Open: {result['url']}")
     print(f"Entry: {result['entryUrl']}")
     return 0
+
+
+def ensure_html_center(url: str, timeout: str) -> None:
+    script = Path(__file__).with_name("ensure_html_center.py")
+    if not script.exists():
+        return
+
+    result = subprocess.run(
+        [sys.executable, str(script), "--url", url, "--timeout", str(timeout)],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if result.stdout.strip():
+        print(result.stdout.strip(), file=sys.stderr)
+    if result.returncode != 0:
+        detail = result.stderr.strip() or result.stdout.strip() or "unknown error"
+        raise SystemExit(f"HTML Center ensure failed: {detail}")
 
 
 def collect_files(input_path: Path) -> list[tuple[str, Path]]:
