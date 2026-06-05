@@ -19,7 +19,7 @@ from pathlib import Path
 DEFAULT_URL = os.environ.get("HTML_CENTER_URL", "http://127.0.0.1:4177")
 DEFAULT_PROJECT = os.environ.get(
     "HTML_CENTER_PROJECT",
-    "/home/user/projects/html-center",
+    "./.."  # PROJECT_ROOT,
 )
 LOCAL_HOSTS = {"127.0.0.1", "localhost", "::1"}
 
